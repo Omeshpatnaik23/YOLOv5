@@ -1,0 +1,127 @@
+Obstacle Detection and Direction Suggestion System 🚧➡️
+This project is an AI-powered real-time obstacle detection and distance estimation system with directional voice suggestions. It uses YOLOv5 (custom and COCO models) to detect objects from a live video stream and guides the user to move in a safe direction based on obstacle positions.
+
+📌 Features
+🔍 Real-time object detection using YOLOv5
+
+🎯 Calculates approximate distance to objects using camera parameters
+
+🧠 Determines the direction to move: Left, Right, Straight, or Stop
+
+🗣️ Provides voice feedback using pyttsx3 for visually guided assistance
+
+📷 Works with IP cameras (e.g., Android via IP Webcam)
+
+🛠 Technologies Used
+Python 3.x
+
+OpenCV
+
+Torch (PyTorch)
+
+YOLOv5 (ultralytics/yolov5)
+
+Pandas
+
+pyttsx3 (Text-to-Speech)
+
+IP Camera Stream
+
+📦 Requirements
+Install the required libraries:
+
+bash
+Copy
+Edit
+pip install opencv-python torch torchvision torchaudio pandas pyttsx3
+Ensure you have YOLOv5 installed or accessible via torch hub:
+'ultralytics/yolov5' should be reachable from your environment.
+
+📁 Project Structure
+bash
+Copy
+Edit
+project/
+│
+├── your_script.py             # Main script (the one you shared)
+├── yolov5/                    # YOLOv5 directory (if used locally)
+│   └── runs/train/...         # Trained model results
+│
+├── README.md                  # Project documentation
+└── requirements.txt           # Dependencies
+🔧 Configuration
+Update the following variables in the script before running:
+
+python
+Copy
+Edit
+model_path = "C:/Users/Deepak/yolov5/runs/train/yolov5s_results11/weights/best.pt"
+cam = "http://<your_ip>:8080/video"
+focal_length = 230  # Adjust based on your camera
+Make sure to:
+
+Replace <your_ip> with the actual IP of your phone (if using IP Webcam).
+
+Set the correct path to your trained YOLOv5 model.
+
+🚀 How to Run
+Start your IP camera (e.g., IP Webcam app on Android).
+
+Run the Python script:
+
+bash
+Copy
+Edit
+python your_script.py
+A window will open displaying the live camera feed with:
+
+Bounding boxes for detected objects
+
+Labels showing class, confidence, and distance
+
+Text and voice-based direction suggestions (e.g., "Move Left")
+
+Press q to exit.
+
+🎯 Object Classes & Heights Used for Distance Estimation
+Object	Estimated Real Height (m)
+person	1.7
+car	1.5
+motorcycle	1.2
+tree	5.0
+bus	3.0
+
+Distance is calculated using the formula:
+
+ini
+Copy
+Edit
+Distance = (Real Height × Focal Length) / Pixel Height
+🗣️ Voice Commands Example
+"Person ahead 2.50 meters. Car ahead 4.10 meters. Move Left."
+
+"All Clear."
+
+💡 Use Cases
+Navigation aid for the visually impaired
+
+Robotics obstacle avoidance
+
+Autonomous vehicle direction assistance
+
+Smart surveillance systems
+
+❗ Known Limitations
+Accuracy of distance estimation depends on camera calibration
+
+Only detects selected object types for direction logic
+
+Voice can stutter if too many objects are detected simultaneously
+
+📃 License
+MIT License – Feel free to use and modify.
+
+🤝 Credits
+Developed by Omesh Patnaik
+Using Ultralytics' YOLOv5
+
